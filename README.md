@@ -14,6 +14,9 @@ This application features :
 
 [![Download SMS Sender Group from Google Play](http://www.android.com/images/brand/android_app_on_play_large.png)](https://play.google.com/store/apps/details?id=fr.bmartel.groupsms)
 
+![App preview](https://user-images.githubusercontent.com/5183022/27750842-e75562b8-5dd9-11e7-9eaf-5c108daaecd4.gif)
+
+
 ## Build
 
 ```
