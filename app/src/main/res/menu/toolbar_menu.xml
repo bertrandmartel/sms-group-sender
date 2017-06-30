@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/button_save"
+        android:icon="@drawable/ic_save"
+        android:title="@string/menu_title_save"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/button_delete"
+        android:icon="@drawable/ic_delete"
+        android:title="@string/menu_title_delete"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/button_send"
+        android:icon="@drawable/ic_action_send"
+        android:title="@string/menu_title_send"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/button_replay"
+        android:icon="@drawable/ic_replay"
+        android:title="@string/menu_title_replay"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/button_add_group"
+        android:icon="@drawable/ic_group_add"
+        android:title="@string/menu_title_add_group"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/button_share"
+        android:icon="@drawable/ic_action_share"
+        android:title="@string/share_menu_title"
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
+
+    <item
+        android:id="@+id/button_add_message"
+        android:icon="@drawable/ic_add"
+        android:title="@string/menu_title_add"
+        app:showAsAction="always" />
+
+</menu>

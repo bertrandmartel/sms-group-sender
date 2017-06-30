@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
+    defaultConfig {
+        applicationId "fr.bmartel.groupsms"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 7
+        versionName "1.06"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    //playstore config
+    signingConfigs {
+        playStore
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            signingConfig signingConfigs.playStore
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile "com.android.support:appcompat-v7:26.0.0-beta2"
+    compile 'com.android.support:design:26.0.0-beta2'
+    compile 'com.android.support:recyclerview-v7:26.0.0-beta2'
+
+    //bottom bar lib
+    compile 'com.roughike:bottom-bar:2.0.2'
+
+    //JSON serialization lib
+    compile 'com.google.code.gson:gson:2.8.1'
+}
+
+def Properties props = new Properties()
+def propFile = new File('signing.properties')
+
+if (propFile.canRead()) {
+    props.load(new FileInputStream(propFile))
+}
+
+if (props.containsKey('STORE_FILE')
+        && props.containsKey('STORE_PASSWORD')
+        && props.containsKey('KEY_ALIAS')
+        && props.containsKey('KEY_PASSWORD')) {
+    android.signingConfigs.playStore.storeFile = file(props['STORE_FILE'])
+    android.signingConfigs.playStore.storePassword = props['STORE_PASSWORD']
+    android.signingConfigs.playStore.keyAlias = props['KEY_ALIAS']
+    android.signingConfigs.playStore.keyPassword = props['KEY_PASSWORD']
+    android.signingConfigs.playStore.v1SigningEnabled = true
+    android.signingConfigs.playStore.v2SigningEnabled = true
+} else {
+    println 'signing.properties not found or incomplete'
+    android.buildTypes.release.signingConfig = null
+}

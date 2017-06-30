@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">SMS Group Sender</string>
+    <string name="app_label">SMS Group</string>
+    <string name="nothing_to_show">No contacts found</string>
+    <string name="app_title">Group</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="menu_title_open_source_components">open source components</string>
+    <string name="rate_app_title" >rate this app</string>
+    <string name="menu_title_about">about</string>
+    <string name="dialog_ok">OK</string>
+    <string name="about">about</string>
+    <string name="open_source_items">Open Source components</string>
+    <string name="copyright">\u00a9 2017 Bertrand Martel</string>
+    <string name="github_link">https://github.com/bertrandmartel/sms-group-sender</string>
+    <string name="menu_title_save">save</string>
+    <string name="menu_title_delete">delete</string>
+    <string name="no_group">no group created yet</string>
+    <string name="no_message">no message created yet</string>
+    <string name="no_topic">no topic created yet</string>
+    <string name="menu_title_send">send message</string>
+    <string name="outbox_empty">outbox is currently empty</string>
+    <string name="send_cancel">cancel</string>
+    <string name="menu_title_replay">replay</string>
+    <string name="title_group">Group list</string>
+    <string name="title_create_group">Create group</string>
+    <string name="title_edit_group">Edit group</string>
+    <string name="title_message">Message list</string>
+    <string name="title_edit_message">Edit message</string>
+    <string name="title_create_message">Create message</string>
+    <string name="title_outbox">Outbox</string>
+    <string name="title_topic">Message topic list</string>
+    <string name="title_topic_send">Send grouped messages</string>
+    <string name="menu_title_add_group">add group</string>
+    <string name="menu_title_add">add message</string>
+    <string name="share_menu_title">share message list</string>
+</resources>

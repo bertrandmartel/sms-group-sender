@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        icon="@drawable/ic_group"
+        id="@+id/tab_group"
+        title="Groups" />
+    <tab
+        icon="@drawable/ic_mail_outline"
+        id="@+id/tab_message"
+        title="Messages" />
+    <tab
+        icon="@drawable/ic_arrow_forward"
+        id="@+id/tab_send"
+        title="Send" />
+
+    <tab
+        icon="@drawable/ic_assignment"
+        id="@+id/tab_outbox"
+        title="Outbox" />
+</tabs>
