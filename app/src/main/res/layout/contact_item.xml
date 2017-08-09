@@ -15,18 +15,26 @@
         android:id="@+id/contact_display_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
         android:paddingLeft="10dp"
         android:text=""
         android:textColor="#1a1a1a" />
 
     <TextView
+        android:id="@+id/contact_phone_number_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.45"
+        android:paddingLeft="10dp"
+        android:textColor="#1a1a1a"
+        android:visibility="gone" />
+
+    <Spinner
         android:id="@+id/contact_phone_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.35"
+        android:layout_weight="0.45"
         android:paddingLeft="10dp"
-        android:text=""
         android:textColor="#1a1a1a" />
 
     <CheckBox

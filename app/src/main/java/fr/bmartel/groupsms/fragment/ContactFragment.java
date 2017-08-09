@@ -52,7 +52,6 @@ import fr.bmartel.groupsms.inter.IFragment;
 import fr.bmartel.groupsms.inter.IViewHolderCheckListener;
 import fr.bmartel.groupsms.model.Contact;
 import fr.bmartel.groupsms.model.Group;
-import fr.bmartel.groupsms.model.Message;
 
 /**
  * Contact Fragment.
@@ -172,11 +171,21 @@ public class ContactFragment extends MainFragmentAbstr implements IFragment {
                 int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(HAS_PHONE_NUMBER)));
                 if (hasPhoneNumber > 0) {
                     Cursor phoneCursor = contentResolver.query(PhoneCONTENT_URI, null, Phone_CONTACT_ID + " = ?", new String[]{contact_id}, null);
+                    List<String> phoneNumberList = new ArrayList<>();
                     while (phoneCursor.moveToNext()) {
-                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
+                        phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER)).replaceAll("\\s+", "");
+                        boolean found = false;
+                        for (int i = 0; i < phoneNumberList.size(); i++) {
+                            if (phoneNumber.equals(phoneNumberList.get(i))) {
+                                found = true;
+                            }
+                        }
+                        if (!found) {
+                            phoneNumberList.add(phoneNumber);
+                        }
                     }
                     phoneCursor.close();
-                    mContactList.add(new Contact(name, phoneNumber, false));
+                    mContactList.add(new Contact(name, phoneNumberList, false, phoneNumberList.get(0)));
                 }
             }
 
@@ -197,6 +206,7 @@ public class ContactFragment extends MainFragmentAbstr implements IFragment {
                         if (groupContact.getDisplayName().equals(mContactList.get(i).getDisplayName()) &&
                                 groupContact.getPhoneNumber().equals(mContactList.get(i).getPhoneNumber())) {
                             mContactList.get(i).setChecked(true);
+                            mContactList.get(i).setSelectedPhoneNumber(groupContact.getSelectedPhoneNumber());
                             mContactList.add(0, mContactList.remove(i));
                         }
                     }

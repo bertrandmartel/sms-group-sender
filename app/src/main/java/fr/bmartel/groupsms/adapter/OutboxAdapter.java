@@ -74,7 +74,7 @@ public class OutboxAdapter extends RecyclerView.Adapter<OutboxAdapter.ViewHolder
         SmsTask item = taskList.get(position);
 
         holder.contactName.setText(item.getContact().getDisplayName());
-        holder.contactPhoneNumber.setText(item.getContact().getPhoneNumber());
+        holder.contactPhoneNumber.setText(item.getContact().getSelectedPhoneNumber());
 
         switch (item.getStatus()) {
             case SMS_DELIVERED:

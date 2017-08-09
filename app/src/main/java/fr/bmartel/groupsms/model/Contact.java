@@ -25,6 +25,8 @@ package fr.bmartel.groupsms.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Contact model.
  *
@@ -35,23 +37,27 @@ public class Contact {
     @SerializedName("displayName")
     private String mDisplayName;
 
-    @SerializedName("phoneNumber")
-    private String mPhoneNumber;
+    @SerializedName("phoneNumberSpinner")
+    private List<String> mPhoneNumber;
+
+    @SerializedName("selectedPhoneNumber")
+    private String mSelectedPhoneNumber;
 
     @SerializedName("checked")
     private boolean mChecked;
 
-    public Contact(String displayName, String phoneNumber, boolean check) {
+    public Contact(String displayName, List<String> phoneNumber, boolean check, String selectedPhoneNumber) {
         mDisplayName = displayName;
         mPhoneNumber = phoneNumber;
         mChecked = check;
+        mSelectedPhoneNumber = selectedPhoneNumber;
     }
 
     public String getDisplayName() {
         return mDisplayName;
     }
 
-    public String getPhoneNumber() {
+    public List<String> getPhoneNumber() {
         return mPhoneNumber;
     }
 
@@ -61,5 +67,13 @@ public class Contact {
 
     public void setChecked(boolean checked) {
         this.mChecked = checked;
+    }
+
+    public String getSelectedPhoneNumber() {
+        return mSelectedPhoneNumber;
+    }
+
+    public void setSelectedPhoneNumber(String selectedPhoneNumber) {
+        mSelectedPhoneNumber = selectedPhoneNumber;
     }
 }

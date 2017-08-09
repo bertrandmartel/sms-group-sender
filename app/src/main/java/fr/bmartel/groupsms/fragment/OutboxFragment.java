@@ -145,7 +145,7 @@ public class OutboxFragment extends MainFragmentAbstr {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setMessage("replay message with title " + task.getMessage().getTitle() +
-                        " to contact " + task.getContact().getDisplayName() + " (" + task.getContact().getPhoneNumber().replaceAll("\\s+", "") + ")")
+                        " to contact " + task.getContact().getDisplayName() + " (" + task.getContact().getSelectedPhoneNumber().replaceAll("\\s+", "") + ")")
                         .setPositiveButton("OK", dialogClickListener)
                         .setNegativeButton("Cancel", dialogClickListener).show();
 

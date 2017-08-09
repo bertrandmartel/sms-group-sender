@@ -588,7 +588,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         String id = UUID.randomUUID().toString();
         task.setId(id);
         task.setStatus(MessageStatus.PENDING);
-        SmsUtils.sendSms(id, this, task.getContact().getPhoneNumber(), task.getMessage().getBody());
+        SmsUtils.sendSms(id, this, task.getContact().getSelectedPhoneNumber(), task.getMessage().getBody());
     }
 
     @Override

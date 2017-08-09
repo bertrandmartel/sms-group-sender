@@ -28,10 +28,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +79,25 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Contact item = contactList.get(position);
-        holder.phoneNumber.setText("" + item.getPhoneNumber().replaceAll("\\s+", "").replaceAll("\\+[0-9]{2}", "0").replaceAll("-", ""));
+        if (item.getPhoneNumber().size() == 1) {
+            holder.phoneNumberTv.setVisibility(View.VISIBLE);
+            holder.phoneNumberSpinner.setVisibility(View.GONE);
+            holder.phoneNumberTv.setText(item.getPhoneNumber().get(0));
+        } else {
+            holder.phoneNumberTv.setVisibility(View.GONE);
+            holder.phoneNumberSpinner.setVisibility(View.VISIBLE);
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(context,
+                    R.layout.contact_phonenum_spinner, item.getPhoneNumber());
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            holder.phoneNumberSpinner.setAdapter(dataAdapter);
+            for (int i = 0; i < item.getPhoneNumber().size(); i++) {
+                if (item.getPhoneNumber().get(i).equals(item.getSelectedPhoneNumber())) {
+                    holder.phoneNumberSpinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+        //holder.phoneNumberSpinner.setText("" + item.getPhoneNumber().replaceAll("\\s+", "").replaceAll("\\+[0-9]{2}", "0").replaceAll("-", ""));
         holder.displayName.setText("" + item.getDisplayName());
         holder.checkBox.setChecked(item.isChecked());
     }
@@ -111,7 +134,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         /**
          * phone number
          */
-        public TextView phoneNumber;
+        public Spinner phoneNumberSpinner;
+
+        /**
+         * phone number textview
+         */
+        public TextView phoneNumberTv;
 
         public CheckBox checkBox;
 
@@ -130,13 +158,25 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             super(v);
             mListener = listener;
             displayName = v.findViewById(R.id.contact_display_name);
-            phoneNumber = v.findViewById(R.id.contact_phone_number);
+            phoneNumberSpinner = v.findViewById(R.id.contact_phone_number);
+            phoneNumberTv = v.findViewById(R.id.contact_phone_number_tv);
             checkBox = v.findViewById(R.id.contact_check);
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     contactList.get(getPosition()).setChecked(isChecked);
                     listener.onContactsChecked(contactList.get(getPosition()), isChecked);
+                }
+            });
+            phoneNumberSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    contactList.get(getPosition()).setSelectedPhoneNumber(adapterView.getItemAtPosition(i).toString());
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
                 }
             });
             layout = v.findViewById(R.id.contact_layout);
